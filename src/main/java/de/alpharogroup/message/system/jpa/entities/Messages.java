@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import de.alpharogroup.resource.system.jpa.entities.Resources;
 
 import de.alpharogroup.db.entity.uniqueable.UUIDEntity;
 import de.alpharogroup.message.system.enums.MessageState;
@@ -60,16 +61,16 @@ public class Messages extends UUIDEntity implements Cloneable
 	 * because of references to other messages.
 	 */
 	@Column(name = "sender_deleted_flag")
-	private Boolean senderDeletedFlag;
+	private boolean senderDeletedFlag;
 	/**
 	 * A flag that indicates that the message is deleted from the recipient but will not really
 	 * deleted because of references to other messages.
 	 */
 	@Column(name = "recipient_deleted_flag")
-	private Boolean recipientDeletedFlag;
+	private boolean recipientDeletedFlag;
 	/** A flag that indicates that the message could not be sent. */
 	@Column(name = "failed2sentemail")
-	private Boolean failed2sentemail;
+	private boolean failed2sentemail;
 	/** The folder of the message. */
 	@Column(name = "folder", length = 64)
 	private String folder;
@@ -99,7 +100,7 @@ public class Messages extends UUIDEntity implements Cloneable
 	private Date sentDate;
 	/** A flag that indicates if the message is a spam message. */
 	@Column(name = "spam_flag")
-	private Boolean spamFlag;
+	private boolean spamFlag;
 	/** An enum for the state from the message. */
 	@Enumerated(EnumType.STRING)
 	@Column(name = "state")
@@ -108,21 +109,11 @@ public class Messages extends UUIDEntity implements Cloneable
 	/** The subject of the message. */
 	@Column(name = "subject", length = 1000)
 	private String subject;
-//	/** The attachments of the message. */
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "message_attachments", joinColumns = {
-//			@JoinColumn(name = "message_id", referencedColumnName = "id") }, inverseJoinColumns = {
-//					@JoinColumn(name = "resource_id", referencedColumnName = "id") })
-//	private Set<Resources> attachments = new HashSet<Resources>();
-
-	/**
-	 * Checks the spam flag.
-	 *
-	 * @return true, if is spam flag
-	 */
-	public boolean isSpamFlag()
-	{
-		return getSpamFlag() != null && getSpamFlag().booleanValue();
-	}
+	/** The attachments of the message. */
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "message_attachments", joinColumns = {
+			@JoinColumn(name = "message_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "resource_id", referencedColumnName = "id") })
+	private Set<Resources> attachments = new HashSet<Resources>();
 
 }
