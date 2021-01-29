@@ -47,6 +47,8 @@ dependencies {
 	implementation("de.alpharogroup:ent-api:$entApiVersion")
 	implementation("de.alpharogroup:ent-core:$entCoreVersion")
 	implementation("de.alpharogroup:resource-entities:$resourceSystemVersion")
+	implementation("de.alpharogroup:auth-entities:$userAuthVersion")
+	implementation("de.alpharogroup:auth-viewmodels:$userAuthVersion")
 	implementation("de.alpharogroup:jobj-copy:$jobjCopyVersion")
 	implementation("de.alpharogroup:vintage-time:$vintageTimeVersion")
 	implementation("de.alpharogroup:checksum-up:$checksumUpVersion")

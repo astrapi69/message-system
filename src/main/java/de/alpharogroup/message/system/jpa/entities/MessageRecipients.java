@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import de.alpharogroup.db.entity.uniqueable.UUIDEntity;
+import de.alpharogroup.user.auth.jpa.entities.Contactmethods;
+import de.alpharogroup.user.auth.jpa.entities.Users;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,15 +38,15 @@ public class MessageRecipients extends UUIDEntity implements Cloneable
 	/**
 	 * The recipient attribute that references to the Entity class {@link Users}.
 	 */
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "recipient_id", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGE_RECIPIENTS_RECIPIENT_ID"))
-//	private Users recipient;
-//	/**
-//	 * The recipient email as a String object that can be indicate that the recipient is a user
-//	 * outside from the system. For instance a user from the system makes a recommendation to a
-//	 * friend.
-//	 */
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "recipient_email", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGE_RECIPIENTS_RECIPIENT_EMAIL"))
-//	private Contactmethods recipientEmail;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "recipient_id", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGE_RECIPIENTS_RECIPIENT_ID"))
+	private Users recipient;
+	/**
+	 * The recipient email as a String object that can be indicate that the recipient is a user
+	 * outside from the system. For instance a user from the system makes a recommendation to a
+	 * friend.
+	 */
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "recipient_email", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGE_RECIPIENTS_RECIPIENT_EMAIL"))
+	private Contactmethods recipientEmail;
 }

@@ -22,6 +22,8 @@ import de.alpharogroup.resource.system.jpa.entities.Resources;
 import de.alpharogroup.db.entity.uniqueable.UUIDEntity;
 import de.alpharogroup.message.system.enums.MessageState;
 import de.alpharogroup.message.system.enums.MessageType;
+import de.alpharogroup.user.auth.jpa.entities.Contactmethods;
+import de.alpharogroup.user.auth.jpa.entities.Users;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -88,13 +90,13 @@ public class Messages extends UUIDEntity implements Cloneable
 	@Column(name = "read_flag")
 	private Boolean readFlag;
 	/** The sender of the message. */
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "sender", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGES_SENDER"))
-//	private Users sender;
-//	/** The email address from the sender of this message. */
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "sender_email", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGES_SENDER_EMAIL"))
-//	private Contactmethods senderEmail;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "sender", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGES_SENDER"))
+	private Users sender;
+	/** The email address from the sender of this message. */
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "sender_email", nullable = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_MESSAGES_SENDER_EMAIL"))
+	private Contactmethods senderEmail;
 	/** The sent date of the message. */
 	@Column(name = "sent_date")
 	private Date sentDate;
